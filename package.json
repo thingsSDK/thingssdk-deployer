@@ -1,0 +1,22 @@
+{
+  "name": "thingssdk-deployer",
+  "version": "1.0.0",
+  "description": "Deploys JavaScript code to microcontrollers using build and upload strategies",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/thingsSDK/thingssdk-deployer.git"
+  },
+  "keywords": [
+    "thingssdk"
+  ],
+  "author": "Andrew Chalkley <andrew@chalkley.org>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/thingsSDK/thingssdk-deployer/issues"
+  },
+  "homepage": "https://github.com/thingsSDK/thingssdk-deployer#readme"
+}
