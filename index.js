@@ -14,7 +14,7 @@ class Deployer {
     build(runtime, builder) {
         builder((err, code) => {
             if(err) {
-                throw err;
+                console.error(err);
             } else {
                 this.runtimes[runtime].uploader(code);
             }
