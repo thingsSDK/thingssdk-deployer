@@ -19,5 +19,10 @@
   "bugs": {
     "url": "https://github.com/thingsSDK/thingssdk-deployer/issues"
   },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "istanbul": "^0.4.4",
+    "mocha": "^3.0.2"
+  },
   "homepage": "https://github.com/thingsSDK/thingssdk-deployer#readme"
 } 
