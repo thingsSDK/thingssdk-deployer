@@ -4,7 +4,8 @@
   "description": "Deploys JavaScript code to microcontrollers using build and upload strategies",
   "main": "index.js",
   "scripts": {
-    "test": "mocha"
+    "test": "mocha",
+    "test:coverage": "istanbul cover node_modules/mocha/bin/_mocha"
   },
   "repository": {
     "type": "git",
@@ -19,4 +20,4 @@
     "url": "https://github.com/thingsSDK/thingssdk-deployer/issues"
   },
   "homepage": "https://github.com/thingsSDK/thingssdk-deployer#readme"
-}
+} 
