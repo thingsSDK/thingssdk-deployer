@@ -1,29 +1,73 @@
 'use strict';
 
-class Deployer {
-    constructor() {
-        this.runtimes = {};
+module.exports = function createDeployer() {
+
+    const runtimeStrategies = {
+
+    };
+
+    let _payload;
+    let _devices;
+
+    function checkPrepareForTypeErrors(devices, payload) {
+        if (typeof devices !== 'object') {
+            throw new Error('prepare() requires a devices object');
+        } else if (typeof payload !== 'object') {
+            throw new Error('prepare() requires a payload object');
+        }
     }
 
-    addToRuntime(runtime, key, value) {
-        var newRuntimeObject = {};
-        newRuntimeObject[key] = value;
-        this.runtimes[runtime] = Object.assign(newRuntimeObject, this.runtimes[runtime]);
+    function checkUseForTypeErrors(runtime, strategyFunction) {
+        if (typeof runtime !== 'string') {
+            throw new Error('use() requires a runtime string');
+        } else if (typeof strategyFunction !== 'function') {
+            throw new Error('use() requires a strategy function');
+        }
     }
-    
-    build(runtime, builder) {
-        builder((err, code) => {
-            if(err) {
-                console.error(err);
-            } else {
-                this.runtimes[runtime].uploader(code);
-            }
+
+
+    function generateNext(next, func) {
+        return (err) => {
+            if (err) throw err;
+            func(_devices, _payload, next);
+        };
+    }
+
+    function addStrategyFunctionToRuntimeQueue(runtime, strategyFunction) {
+        if (runtimeStrategies[runtime] === undefined) {
+            runtimeStrategies[runtime] = [];
+        }
+
+        runtimeStrategies[runtime].push(strategyFunction);
+    }
+
+    function executeQueue(queue) {
+        const queueReversed = queue.slice().reverse();
+        const go = queueReversed.reduce(generateNext, (()=>{}));
+        go();
+    }
+
+    function use(runtime, strategyFunction) {
+        checkUseForTypeErrors(runtime, strategyFunction);
+        addStrategyFunctionToRuntimeQueue(runtime, strategyFunction);
+    }
+
+    function deploy(onEndHandler = () => {}) {
+        const runtimes = Object.keys(runtimeStrategies);
+        runtimes.forEach(runtime => {
+            runtimeStrategies[runtime].push(() => onEndHandler(runtime));
+            executeQueue(runtimeStrategies[runtime]);
         });
     }
 
-    upload(runtime, uploader) {
-        this.addToRuntime(runtime, "uploader", uploader);
+    function prepare(devices, payload) {
+        checkPrepareForTypeErrors(devices, payload);
+        _devices = devices;
+        _payload = payload;
     }
-}
-
-module.exports = () => new Deployer();
+    return {
+        use,
+        deploy,
+        prepare
+    };
+};
