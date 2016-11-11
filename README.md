@@ -21,11 +21,11 @@ const devices = {
             baud_rate: 115200
         }
     }
-}
+};
 
 const payload: {
-    entryPoint: "index.js"
-}
+    entry: "index.js"
+};
 
 const createDeployer = require('thingssdk-deployer');
 const deployer = createDeployer();
@@ -33,7 +33,7 @@ const deployer = createDeployer();
 deployer.prepare(devices, payload);
 //Build Process
 deployer.use('microjs', (devices, payload, next) => {
-    someTranspileFunction(payload.entryPoint, (err, code) => {
+    someTranspileFunction(payload.entry, (err, code) => {
         payload.code = code;
         next();
     });
