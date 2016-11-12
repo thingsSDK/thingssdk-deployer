@@ -1,5 +1,11 @@
 # thingsSDK Deployer
 
+[![Build Status](https://travis-ci.org/thingsSDK/thingssdk-deployer.svg?branch=master)](https://travis-ci.org/thingsSDK/thingssdk-deployer)
+[![codecov](https://codecov.io/gh/thingsSDK/thingssdk-deployer/branch/master/graph/badge.svg)](https://codecov.io/gh/thingsSDK/thingssdk-deployer)
+[![Dependency Status](https://david-dm.org/thingssdk/thingssdk-deployer.svg)](https://david-dm.org/thingssdk/thingssdk-deployer)
+[![devDependency Status](https://david-dm.org/thingssdk/thingssdk-deployer/dev-status.svg)](https://david-dm.org/thingssdk/thingssdk-deployer#info=devDependencies)
+
+
 Deploys JavaScript code to microcontrollers using build and upload strategies.
 
 ## Installation
