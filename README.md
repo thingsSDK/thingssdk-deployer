@@ -55,6 +55,6 @@ deployer.deploy();
 
 ```
 
-##Current Strategies
+## Current Strategies
 
 * [thingssdk-espruino-strategy](https://github.com/thingsSDK/thingssdk-espruino-strategy)
