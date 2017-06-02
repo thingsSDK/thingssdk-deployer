@@ -11,7 +11,7 @@ Deploys JavaScript code to microcontrollers using build and upload strategies.
 ## Installation
 
 ```bash
-$ npm install thingssdk\thingssdk-deployer
+$ npm install thingssdk-deployer
 ```
 
 ## Example Code
